@@ -6,7 +6,7 @@ export default function App() {
     <>
       <h1>React Count Timer Example</h1>
       <h2>⏱⬇ Count down</h2>
-      <CountTimer countType={'down'} initDays={1}>
+      <CountTimer countType={'down'} initMinutes={1}>
         {({ days, hours, minutes, seconds }) => {
           return (
             <>
@@ -20,7 +20,7 @@ export default function App() {
       </CountTimer>
       <hr />
       <h2>⏱⬆ Count up</h2>
-      <CountTimer countType={'up'} initDays={1}>
+      <CountTimer countType={'up'} initMinutes={1}>
         {({ days, hours, minutes, seconds }) => {
           return (
             <>

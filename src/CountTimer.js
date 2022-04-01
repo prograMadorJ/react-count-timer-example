@@ -11,7 +11,7 @@ export default function CountTimer({
   let date = new Date();
 
   const get24Hours = (hour) =>
-    hour === 0 && initHours > 0 ? 0 : 0;
+    hour === 0 && initHours > 0 ? 0 : hour
 
   initDays && date.setHours((initDays + get24Hours(date.getHours())) * 24);
   initHours && date.setHours(initHours + get24Hours(date.getHours()));
@@ -25,7 +25,7 @@ export default function CountTimer({
     seconds: '00',
   });
 
-  const [seconds, setSeconds] = useState(0);
+  const [seconds, setSeconds] = useState(initSeconds || 0);
 
   if (!['up', 'down'].includes(countType)) {
     return console.error(
@@ -71,8 +71,10 @@ export default function CountTimer({
         counterTimeUp.setMinutes(counterTimeUp.getMinutes());
         counterTimeUp.setHours(get24Hours(counterTimeUp.getHours()));
 
+        const h = initHours*60 || (initMinutes ? initMinutes : 0)
+
         totalDays =
-          !initDays && (initHours > 24) ? Math.floor(initHours / 24) : 0;
+          !initDays && (h > 24) ? Math.floor(h / (24*60)) : 0;
         totalHours = get24Hours(counterTimeUp.getHours());
         totalMinutes = counterTimeUp.getMinutes();
         totalSeconds = counterTimeUp.getSeconds();
