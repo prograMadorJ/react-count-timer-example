@@ -11,7 +11,7 @@ export default function CountTimer({
   let date = new Date();
 
   const get24Hours = (hour) =>
-    hour === 0 ? (countType === 'down' ? 0 : 24) : hour;
+    hour === 0 && initHours > 0 ? 0 : 0;
 
   initDays && date.setHours((initDays + get24Hours(date.getHours())) * 24);
   initHours && date.setHours(initHours + get24Hours(date.getHours()));
@@ -72,7 +72,7 @@ export default function CountTimer({
         counterTimeUp.setHours(get24Hours(counterTimeUp.getHours()));
 
         totalDays =
-          !initDays || initHours > 24 ? Math.floor(initHours / 24) : initDays;
+          !initDays && (initHours > 24) ? Math.floor(initHours / 24) : 0;
         totalHours = get24Hours(counterTimeUp.getHours());
         totalMinutes = counterTimeUp.getMinutes();
         totalSeconds = counterTimeUp.getSeconds();
