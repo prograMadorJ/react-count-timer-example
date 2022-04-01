@@ -93,7 +93,7 @@ export default function CountTimer({
 
       const padStart = (value) => value.toString().padStart(2, '0');
 
-      if (remainingDayTime >= 0) {
+      if (remainingDayTime >= 0 || countType === 'up') {
         const runningCountTime = {
           days: totalDays,
           hours: padStart(totalHours),
